@@ -1,12 +1,14 @@
 terraform {
-  cloud {
-    hostname = "app.terraform.io"
-    organization = "fiap-eks"
+  # cloud {
+  #   hostname = "app.terraform.io"
+  #   organization = "fiap-eks"
 
-    workspaces {
-      name = "fiap-lanches-terraform-eks-gitactions"
-    }
-  }
+  #   workspaces {
+  #     name = "fiap-lanches-terraform-eks-gitactions"
+  #   }
+  # }
+
+   backend "remote" {}
 
   required_providers {
     aws = {
