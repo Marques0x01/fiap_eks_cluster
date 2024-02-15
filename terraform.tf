@@ -2,7 +2,7 @@ terraform {
   cloud {
     hostname = "app.terraform.io"
     organization = "fiap-eks"
-    token = "xtCNdMoXPRLtYA.atlasv1.yKMUUqukeNPDgM1Nm3DAKqdqgWD3elheGcXznXZ7EjUKCGmUoX8h7RGIF3r7NDwa5fs"
+    token = "rHKQeeTPvhyupQ.atlasv1.pzWUPwGdODjGCpdtG1dx5Ulo0Rqr0NpXQ3YSCzgyOzQd2fH9xjkCROv0nCbot8gtysE"
 
     workspaces {
       name = "fiap-lanches-terraform-eks-gitactions"
