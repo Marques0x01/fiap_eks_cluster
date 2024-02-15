@@ -52,7 +52,7 @@ jobs:
   terraform-eks:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     env:
       ACTIONS_RUNNER_DEBUG: true
 
@@ -65,10 +65,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          cli_config_credentials_token: mvPFVyJBfT4jvA.atlasv1.syAhO9gyEZvwFlIrorjZqW7LnZBy3zxkfFv8iyQrNSRgWNiO1yY9G9rS7dVSj9nTo58
-
-      - name: Login
-        run: terraform login
+          cli_config_credentials_token: mdHqcz4GsivljQ.atlasv1.GvyTwLlPrUBXDWv5G2oHfJG01TRPHySIVl3yYCMSmwdIEYvyQs6oW0h6LOM8GrhlK3w
 
       # - name: Login
       #   run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU

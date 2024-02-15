@@ -11,6 +11,9 @@ data "aws_availability_zones" "available" {
 
 data "terraform_remote_state" "eks" {
   backend = "remote"
+  # config = {
+  #   path = ".terraform/terraform.tfstate"
+  # }
     config = {
       organization = "fiap-eks"
 
