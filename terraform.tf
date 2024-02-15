@@ -1,11 +1,11 @@
 terraform {
   cloud {
     hostname = "app.terraform.io"
-    organization = "fiap-eks"
-    token = "i0o9EMUMUnAVTQ.atlasv1.xTOYVNreM1JB8tOUm9ZKadRkyItkOyAyfWuvTYjxa8ssvnpOjPMRFSAOV0zKjrE7xZg"
+    organization = "fiap-lanches-eks"
+    token = "AalvRrZ1ZcFuhg.atlasv1.tqc5pZJFkvjTWUXEgEemc29nNzCwIsjpPjNKNm3q0xu2C1NWBZim50S9Ptn8IhWERW4"
 
     workspaces {
-      name = "fiap-lanches-terraform-eks-gitactions"
+      name = "fiap-lanches-workflow"
     }
   }
 
