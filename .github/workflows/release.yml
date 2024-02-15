@@ -65,7 +65,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          cli_config_credentials_token: m1Kn3hZYRAxbsA.atlasv1.qoGKdCwyS4vDVstpZNFKacbSOyWrq740cds11AnGv1PJrp5Z2yG1xoIydOXgkx4zuOY
+          cli_config_credentials_token: NVFrjYzpMx7JMw.atlasv1.E4rFD0rvfyxszybLPtWVSXcF8L67lnLgVVBxVNu9HwSSPrAobs3l9g0Yf97fZWoWjuE
 
       # - name: Login
       #   run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU
