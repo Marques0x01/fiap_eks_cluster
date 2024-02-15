@@ -2,16 +2,12 @@ terraform {
   cloud {
     hostname = "app.terraform.io"
     organization = "fiap-eks"
-    token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys"
+    token = "fUzncTgw9lc72g.atlasv1.J2w2G3CnPQFtUyPNsb8t8Klgld6205AVlmA842fm3HnW48B4kEFz7Md2n94u9q41O3U"
 
     workspaces {
       name = "fiap-lanches-terraform-eks-gitactions"
     }
   }
-
-  #  backend "remote" {
-  #   token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys"
-  #  }
 
   required_providers {
     aws = {
