@@ -65,6 +65,8 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Login
+        run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU
       # - name: Set Terraform Config File
       #   run: echo 'credentials "app.terraform.io" { token = "fUzncTgw9lc72g.atlasv1.J2w2G3CnPQFtUyPNsb8t8Klgld6205AVlmA842fm3HnW48B4kEFz7Md2n94u9q41O3U" }' > ~/.terraformrc
       #   env:
