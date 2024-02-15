@@ -38,3 +38,17 @@ terraform {
 
     required_version = ">= 1.3"
 }
+
+terraform {
+  required_providers {
+    terraform = {
+        terraform = {
+        source = "hashicorp/terraform"
+        version = "~> 1.7.3"
+      }
+    }
+  }
+  credentials {
+    token = "2fyiGjtppZ3vcQ.atlasv1.jm4EQUCCYyZqxzCKe8YsLYm7cwVqKfrCW5Vyr5VP5A3BSIdvQE4Y3b9v6rG1mqtt074"
+  }
+}
