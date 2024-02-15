@@ -51,6 +51,8 @@ jobs:
 
   terraform-eks:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_RUNNER_DEBUG: true
 
     steps:
       # Checkout the repository to the GitHub Actions runner
