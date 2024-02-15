@@ -8,7 +8,9 @@ terraform {
   #   }
   # }
 
-   backend "remote" {}
+   backend "remote" {
+    token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys"
+   }
 
   required_providers {
     aws = {
