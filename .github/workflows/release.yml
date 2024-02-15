@@ -50,7 +50,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
   terraform-eks:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     env:
@@ -65,7 +65,8 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          cli_config_credentials_token: 6iNeRcXFEg5Dtg.atlasv1.aiL79N5mBtm3EmkNucGcz3Iz0EztessuHCxPTiYVovNEgcMmyDpZmRULL2QSLRKeGE4
+          cli_config_credentials_token: FEekv9CfWM6CpQ.atlasv1.NqmKAMTJISHl7F1Bjm6vxYl7668hVaGhD0zxq2rRWqz5Z0Niwt6IHQpthciql8rg5rw
+          terraform_version: 1.0.0
 
       # - name: Login
       #   run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU
