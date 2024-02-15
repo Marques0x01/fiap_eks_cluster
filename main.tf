@@ -10,17 +10,17 @@ data "aws_availability_zones" "available" {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "remote"
-  # config = {
-  #   path = ".terraform/terraform.tfstate"
-  # }
-    config = {
-      organization = "fiap-eks"
-
-    workspaces = {
-      name = "fiap-lanches-terraform-eks-gitactions"
-    }
+  backend = "local"
+  config = {
+    path = ".terraform/terraform.tfstate"
   }
+    # config = {
+    #   organization = "fiap-eks"
+
+    # workspaces = {
+    #   name = "fiap-lanches-terraform-eks-gitactions"
+    # }
+  # }
 }
 
 # Retrieve EKS cluster configuration

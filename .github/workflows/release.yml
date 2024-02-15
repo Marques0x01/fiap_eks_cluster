@@ -64,9 +64,9 @@ jobs:
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: bo43eS5jss8wzA.atlasv1.uxpthPtOpatXSnMbtrTKC6u8uUdyyJr4PBeSSzoEZN9ZF9LJ0p6o39flgOmzfbSoTEM
-          terraform_version: 1.7.2
+        # with:
+        #   cli_config_credentials_token: bo43eS5jss8wzA.atlasv1.uxpthPtOpatXSnMbtrTKC6u8uUdyyJr4PBeSSzoEZN9ZF9LJ0p6o39flgOmzfbSoTEM
+        #   terraform_version: 1.7.2
 
       # - name: Login
       #   run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU
