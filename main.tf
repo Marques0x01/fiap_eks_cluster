@@ -1,7 +1,7 @@
 provider "tfe" {
   # hostname = var.hostname # Optional, for use with Terraform Enterprise. Defaults to app.terraform.io.
-  token = "yXIpzz9YYQbGmw.atlasv1.pwoMBzZXZIqKnBf8jD0cxEjJTOM2KIZNzpSqdSVH6ZdJJ9d55nzPImuSbiWdDtf3DqA"
-  
+  token = "ehyCnCJGPZSDBw.atlasv1.HDPjYj31zK8TAA8dRfY0IzcTupo8b4DzENBfTyjC4eOzagIq3awSGODm0upztNXz0h0"
+
 }
 
 provider "aws" {
