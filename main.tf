@@ -1,3 +1,8 @@
+provider "tfe" {
+  # hostname = var.hostname # Optional, for use with Terraform Enterprise. Defaults to app.terraform.io.
+  token = "2fyiGjtppZ3vcQ.atlasv1.jm4EQUCCYyZqxzCKe8YsLYm7cwVqKfrCW5Vyr5VP5A3BSIdvQE4Y3b9v6rG1mqtt074"
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -10,17 +15,17 @@ data "aws_availability_zones" "available" {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "local"
-  config = {
-    path = ".terraform/terraform.tfstate"
-  }
-    # config = {
-    #   organization = "fiap-eks"
-
-    # workspaces = {
-    #   name = "fiap-lanches-terraform-eks-gitactions"
-    # }
+  backend = "remote"
+  # config = {
+  #   path = ".terraform/terraform.tfstate"
   # }
+    config = {
+      organization = "fiap-eks"
+
+    workspaces = {
+      name = "fiap-lanches-terraform-eks-gitactions"
+    }
+  }
 }
 
 # Retrieve EKS cluster configuration
