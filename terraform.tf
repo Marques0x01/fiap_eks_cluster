@@ -1,8 +1,10 @@
 terraform {
+
+  
   backend "remote" {
     # hostname = "app.terraform.io"
     organization = "fiap-lanches-eks"
-    # token = "yXIpzz9YYQbGmw.atlasv1.pwoMBzZXZIqKnBf8jD0cxEjJTOM2KIZNzpSqdSVH6ZdJJ9d55nzPImuSbiWdDtf3DqA"
+    token = "jGuwYVcoadX9LQ.atlasv1.CfQIBevIpdT4BigMigaIfqgLTPMVeXk7ICW1cMiQyJVZF4synj1QEzJli884yCHWqkA"
 
     workspaces {
       name = "fiap-lanches-workflow"
@@ -11,8 +13,10 @@ terraform {
 
   required_providers {
     tfe = {
+      source = "hashicorp/tfe"
       version = "~> 0.52.0"
     }
+
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.7.0"

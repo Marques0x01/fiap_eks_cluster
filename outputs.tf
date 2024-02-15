@@ -1,32 +1,32 @@
-output "cluster_endpoint" {
-  description = "Endpoint for EKS control plane"
-  value       = module.eks.cluster_endpoint
-}
+# output "cluster_endpoint" {
+#   description = "Endpoint for EKS control plane"
+#   value       = module.eks.cluster_endpoint
+# }
 
-output "cluster_security_group_id" {
-  description = "Security group ids attached to the cluster control plane"
-  value       = module.eks.cluster_security_group_id
-}
+# output "cluster_security_group_id" {
+#   description = "Security group ids attached to the cluster control plane"
+#   value       = module.eks.cluster_security_group_id
+# }
 
-output "region" {
-  description = "AWS region"
-  value       = "us-east-1"
-}
+# output "region" {
+#   description = "AWS region"
+#   value       = "us-east-1"
+# }
 
-output "cluster_name" {
-  description = "Kubernetes Cluster Name"
-  value       = module.eks.cluster_name
-}
+# output "cluster_name" {
+#   description = "Kubernetes Cluster Name"
+#   value       = module.eks.cluster_name
+# }
 
-output "current_workspace_name" {
-  value = terraform.workspace
-}
+# output "current_workspace_name" {
+#   value = terraform.workspace
+# }
 
-variable "TFC_RUN_ID" {
-  type    = string
-  default = ""
-}
+# variable "TFC_RUN_ID" {
+#   type    = string
+#   default = ""
+# }
 
-output "remote_execution_determine" {
-  value = "Remote run environment? %{if var.TFC_RUN_ID != ""}Yes%{else}No this is local%{endif}!"
-}
+# output "remote_execution_determine" {
+#   value = "Remote run environment? %{if var.TFC_RUN_ID != ""}Yes%{else}No this is local%{endif}!"
+# }
