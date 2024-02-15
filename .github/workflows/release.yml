@@ -67,6 +67,9 @@ jobs:
         with:
           cli_config_credentials_token: SxBDQqx0hxcvdg.atlasv1.GCAlljG4FFjZyeP3AU5HDGC3BP2UdH1G7bJdu1r6LdlhgyALxkzqD5K7Tyjvv0JpNMw
 
+      - name: Login
+        run: terraform login
+
       # - name: Login
       #   run: terraform login -token=Yb2fKyF5gWAuCA.atlasv1.aoVfDfNdYqDjpUyCFr6PQyDzin6MzS22doLU1GZ5yIjalwf2p9zoL3aE81geJFZMdyU
       # - name: Set Terraform Config File
