@@ -51,6 +51,8 @@ jobs:
 
   terraform-eks:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       ACTIONS_RUNNER_DEBUG: true
 
