@@ -36,11 +36,6 @@ jobs:
           git config user.name "Jonathan"
           git config user.email "jonathan.gomess1@gmail.com"
 
-      - name: Remove Git Tag
-        run: |
-          git tag -d fiap-lanches-0.2.0
-          git push origin :fiap-lanches-0.2.0
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
