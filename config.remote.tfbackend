@@ -1,3 +1,0 @@
-workspaces { name = "fiap-lanches-terraform-eks-gitactions" }
-hostname     = "app.terraform.io"
-organization = "fiap-eks"
