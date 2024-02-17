@@ -35,9 +35,6 @@ jobs:
         run: |
           git config user.name "Jonathan"
           git config user.email "jonathan.gomess1@gmail.com"
-
-      - name: ls
-        run: ls
   
       - name: Install Helm
         uses: azure/setup-helm@v3
