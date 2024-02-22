@@ -20,7 +20,7 @@ resource "helm_release" "fiap-lanches" {
   name       = "fiap-lanches"
   repository = "https://gitlab.com/api/v4/projects/55019864/packages/helm/stable"
   chart      = "fiap-lanches"
-  version    = "v0.2.0"
+  version    = "v0.3.0"
 
     set {
     name  = "cluster.enabled"
