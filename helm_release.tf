@@ -12,15 +12,20 @@ provider "helm" {
       command     = "aws"
     }
   }
+  registry {
+    url = "oci://${data.aws_ecr_repository.service.repository_url}"
+    username = data.aws_ecr_authorization_token.token.user_name
+    password = data.aws_ecr_authorization_token.token.password
+  }
 }
 
 resource "helm_release" "fiap-lanches" {
   namespace = "fiap-lanches"
   create_namespace = true
   name       = "fiap-lanches"
-  repository = "https://gitlab.com/api/v4/projects/55019864/packages/helm/stable"
+  repository = replace("oci://${data.aws_ecr_repository.service.repository_url}", "/fiap-lanches", "")
   chart      = "fiap-lanches"
-  version    = "v0.3.0"
+  version    = "0.3.0"
 
     set {
     name  = "cluster.enabled"

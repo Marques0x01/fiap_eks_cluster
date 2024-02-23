@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_ecr_authorization_token" "token" {}
+
+data "aws_ecr_repository" "service" {
+  name = "fiap-lanches"
+}
+
 data "aws_availability_zones" "available" {
   filter {
     name   = "opt-in-status"
