@@ -15,37 +15,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  helm:
-    permissions:
-      contents: write
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          repository: Marques0x01/fiap-lanches-helm
-          ref: gh-pages  # Ou outra branch
-
-      - name: Configure Git
-        run: |
-          git config user.name "Jonathan"
-          git config user.email "jonathan.gomess1@gmail.com"
-  
-      - name: Install Helm
-        uses: azure/setup-helm@v3
-
-      - name: Package chart
-        run: helm package ./
-
-      - name: Send for Gitlab
-        run: curl --request POST --form 'chart=@fiap-lanches-0.2.0.tgz' --user jonathan.gomess1:glpat-4Dbov9sMG_ZwDgsL-HWs https://gitlab.com/api/v4/projects/55019864/packages/helm/api/stable/charts
-  
-
   terraform-eks:
     runs-on: ubuntu-latest
 
