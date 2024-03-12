@@ -15,17 +15,6 @@ data "aws_availability_zones" "available" {
   }
 }
 
-data "terraform_remote_state" "eks" {
-  backend = "remote"
-    config = {
-      organization = "fiap-lanches-eks"
-
-    workspaces = {
-      name = "fiap-lanches-workflow"
-    }
-  }
-}
-
 data "aws_eks_cluster_auth" "cluster" {
   name = "fiap-lanches-eks-cWTzWOQb"
 }
