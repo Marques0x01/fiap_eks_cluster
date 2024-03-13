@@ -78,8 +78,6 @@ module "eks" {
     ami_type = "AL2_x86_64"
 
   }
-}
-
   eks_managed_node_groups = {
     one = {
       name = "node-group-1"
@@ -101,3 +99,4 @@ module "eks" {
       desired_size = 1
     }
   }
+}
