@@ -28,6 +28,13 @@ resource "random_string" "suffix" {
   special = false
 }
 
+resource "aws_kms_key" "fiap-lanches-eks-cWTzWOQb" {}
+
+resource "aws_kms_alias" "fiap-lanches-eks-cWTzWOQb" {
+  name          = "alias/eks/fiap-lanches-eks-cWTzWOQb"
+  target_key_id = aws_kms_key.fiap-lanches-eks-cWTzWOQb.key_id
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
