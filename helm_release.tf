@@ -21,6 +21,7 @@ provider "helm" {
 
 resource "helm_release" "fiap-lanches" {
   namespace = "fiap-lanches"
+  force_update = true
   create_namespace = true
   name       = "fiap-lanches"
   repository = replace("oci://${data.aws_ecr_repository.service.repository_url}", "/fiap-lanches", "")
