@@ -65,7 +65,7 @@ module "vpc" {
 module "eks" {
   depends_on = [ module.vpc ]
   source  = "terraform-aws-modules/eks/aws"
-  version = "19.15.3"
+  version = "18.31.2"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
