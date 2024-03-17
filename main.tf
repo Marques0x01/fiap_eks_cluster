@@ -1,18 +1,11 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "sa-east-1"
 }
 
 data "aws_ecr_authorization_token" "token" {}
 
 data "aws_ecr_repository" "service" {
   name = "fiap-lanches"
-}
-
-data "aws_availability_zones" "available" {
-  filter {
-    name   = "opt-in-status"
-    values = ["opt-in-not-required"]
-  }
 }
 
 data "aws_eks_cluster_auth" "cluster" {
@@ -23,55 +16,16 @@ locals {
   cluster_name = "fiap-lanches-eks-cWTzWOQb"
 }
 
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
-}
-
-resource "aws_kms_key" "fiap-lanches-eks-cWTzWOQb" {}
-
-resource "aws_kms_alias" "fiap-lanches-eks-cWTzWOQb" {
-  name          = "alias/eks/fiap-lanches-eks-cWTzWOQb"
-  target_key_id = aws_kms_key.fiap-lanches-eks-cWTzWOQb.key_id
-}
-
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "5.0.0"
-
-  name = "fiap-lanches-vpc"
-
-  cidr = "10.0.0.0/16"
-  azs  = slice(data.aws_availability_zones.available.names, 0, 3)
-
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
-
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
-  enable_dns_hostnames = true
-
-  public_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
-  }
-
-  private_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
-  }
-}
 
 module "eks" {
-  depends_on = [ module.vpc ]
   source  = "terraform-aws-modules/eks/aws"
   version = "19.21.0"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
 
-  vpc_id                         = module.vpc.vpc_id
-  subnet_ids                     = module.vpc.private_subnets
+  vpc_id                         = "vpc-0752727b0f51764fc"
+  subnet_ids                     = ["subnet-00ce4adb6c30c8ae1", "subnet-00112381be80c7d94", "subnet-053702fcb1e019f87"]
   cluster_endpoint_public_access = true
 
   eks_managed_node_group_defaults = {
