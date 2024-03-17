@@ -16,6 +16,23 @@ locals {
   cluster_name = "fiap-lanches-eks-cWTzWOQb"
 }
 
+resource "aws_kms_key" "fiap-lanches-eks-cWTzWOQb" {}
+
+resource "aws_kms_alias" "fiap-lanches-eks-cWTzWOQb" {
+  name          = "alias/eks/fiap-lanches-eks-cWTzWOQb"
+  target_key_id = aws_kms_key.fiap-lanches-eks-cWTzWOQbs.key_id
+}
+
+resource "aws_cloudwatch_log_group" "fiap-lanches-eks-cWTzWOQb" {
+  name = "fiap-lanches-eks-cWTzWOQb"
+  skip_destroy = false
+
+  tags = {
+    Environment = "production"
+    Application = "fiap-lanches"
+  }
+}
+
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
