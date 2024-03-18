@@ -107,21 +107,27 @@ module "iam_eks_role" {
     "fiap-lanches-eks" = ["default:fiap-lanches-eks"]
   }
 
+  depends_on = [ module.iam_user ]
+
   tags = {
     Name = "eks-fiap-lanches-role"
   }
 
+    group_users = [
+    "fiap-lanches"
+  ]
+
   role_policy_arns = {
-    AdministratorAccess = "arn:aws:eks::aws:cluster-access-policy/AdministratorAccess"
-    AmazonEKSClusterPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterPolicy"
-    AmazonEKSFargatePodExecutionRolePolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSFargatePodExecutionRolePolicy"
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+    AmazonEKSClusterPolicy = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+    AmazonEKSFargatePodExecutionRolePolicy = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
   }
 }
 
 module "iam_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
 
-  name          = "vasya.pupkin"
+  name          = "fiap-lanches"
   force_destroy = true
   password_reset_required = false
 
@@ -131,6 +137,8 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.3"
   depends_on = [ module.iam_eks_role ]
+
+  iam_role_use_name_prefix = "fiap-lanches"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
