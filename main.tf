@@ -93,8 +93,13 @@ resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
 }
 
 
+module "iam" {
+  source  = "terraform-aws-modules/iam/aws"
+  version = "5.37.1"
+}
+
 module "iam_eks_role" {
-  source      = "terraform-aws-modules/iam/aws//modules/iam-eks-role"
+  source      = "terraform-aws-modules/iam/aws/modules/iam-eks-role"
 
   role_name   = "fiap-lanches-role"
 
@@ -106,18 +111,18 @@ module "iam_eks_role" {
     Name = "eks-fiap-lanches-role"
   }
 
-  role_policy_arns = [
-    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy",
-    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy",
-    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy",
-    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
-  ]
+  role_policy_arns = {
+    AmazonEKSAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+    AmazonEKSEditPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
+    AmazonEKSClusterAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+    AmazonEKSViewPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+  }
 }
 
 module "iam_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
 
-  name          = "fiap-lanches"
+  name          = "vasya.pupkin"
   force_destroy = true
   password_reset_required = false
 
