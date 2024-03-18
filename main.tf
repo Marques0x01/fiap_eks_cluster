@@ -113,10 +113,6 @@ module "iam_eks_role" {
     Name = "eks-fiap-lanches-role"
   }
 
-    group_users = [
-    "fiap-lanches"
-  ]
-
   role_policy_arns = {
     AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
     AmazonEKSClusterPolicy = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
