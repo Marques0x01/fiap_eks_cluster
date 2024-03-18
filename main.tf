@@ -112,9 +112,9 @@ module "iam_eks_role" {
   }
 
   role_policy_arns = {
-    AmazonEKSAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
-    AmazonEKSEditPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
-    AmazonEKSClusterAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+    AdministratorAccess = "arn:aws:eks::aws:cluster-access-policy/AdministratorAccess"
+    AmazonEKSClusterPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterPolicy"
+    AmazonEKSFargatePodExecutionRolePolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSFargatePodExecutionRolePolicy"
   }
 }
 
