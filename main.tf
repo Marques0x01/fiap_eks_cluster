@@ -139,7 +139,12 @@ module "eks" {
   version = "20.8.3"
   depends_on = [ module.iam_eks_role ]
   
-  access_entries = "arn:aws:iam::211125342569:user/fiap-lanches"
+  access_entries = {
+    fiap_lanches = {
+      principal_arn     = "arn:aws:iam::211125342569:user/fiap-lanches"
+    }
+  }
+
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
 
