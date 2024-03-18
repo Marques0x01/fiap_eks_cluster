@@ -14,9 +14,13 @@ terraform {
       version = "~> 0.52.0"
     }
 
+    kubectl = {
+      source = "gavinbunney/kubectl"
+    }
+
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.7.0"
+      version = "~> 5.40.0"
     }
 
     random = {
