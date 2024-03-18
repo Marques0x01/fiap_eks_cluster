@@ -75,16 +75,6 @@ module "kms" {
 #   target_key_id = aws_kms_key.fiap-lanches-eks.key_id
 # }
 
-resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
-  name         = "fiap-lanches-eks"
-  skip_destroy = false
-
-  tags = {
-    Environment = "production"
-    Application = "fiap-lanches"
-  }
-}
-
 # resource "aws_kms_key" "fiap-lanches-eks" {}
 
 # resource "aws_kms_alias" "fiap-lanches-eks" {
