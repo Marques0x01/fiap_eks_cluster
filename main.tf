@@ -127,14 +127,17 @@ module "iam_user" {
   force_destroy = true
   password_reset_required = false
 
+  policy_arns = [
+    "arn:aws:iam::aws:policy/AdministratorAccess",
+    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+    "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
+  ]
 }
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.3"
   depends_on = [ module.iam_eks_role ]
-
-  iam_role_use_name_prefix = "fiap-lanches"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
