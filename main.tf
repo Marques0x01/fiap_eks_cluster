@@ -59,7 +59,7 @@ module "kms" {
   key_usage   = "ENCRYPT_DECRYPT"
 
   # Policy
-  key_administrators                 = ["arn:aws:iam::012345678901:role/admin"]
+  # key_administrators                 = ["arn:aws:iam::012345678901:role/admin"]
 
   # Aliases
   aliases = ["alias/eks/fiap-lanches-eks"]
@@ -106,12 +106,21 @@ module "iam_eks_role" {
     Name = "eks-fiap-lanches-role"
   }
 
-  role_policy_arns = {
-    AmazonEKS_ADMIN_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
-    AmazonEKS_EDIT_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
-    AmazonEKS_CLUSTER_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-    AmazonEKS_VIEW_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
-  }
+  role_policy_arns = [
+    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy",
+    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy",
+    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy",
+    "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+  ]
+}
+
+module "iam_user" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+
+  name          = "fiap-lanches"
+  force_destroy = true
+  password_reset_required = false
+
 }
 
 module "eks" {
