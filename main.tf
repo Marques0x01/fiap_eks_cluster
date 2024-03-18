@@ -148,6 +148,10 @@ module "eks" {
           # AmazonEKSViewPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
           # AmazonEKSAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
           # AmazonEKSClusterAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            namespaces = ["default"]
+            type       = "namespace"
+          }
         }
       }
     }
