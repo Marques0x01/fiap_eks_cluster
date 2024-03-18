@@ -33,6 +33,7 @@ resource "helm_release" "fiap-lanches" {
   repository       = replace("oci://${data.aws_ecr_repository.service.repository_url}", "/fiap-lanches", "")
   chart            = "fiap-lanches"
   version          = "0.3.0"
+  recreate_pods    = true
 
   set {
     name  = "cluster.enabled"
