@@ -142,6 +142,14 @@ module "eks" {
   access_entries = {
     fiap_lanches = {
       principal_arn     = "arn:aws:iam::211125342569:user/fiap-lanches"
+      policy_associations = {
+        fiap_lanches = {
+          AmazonEKSViewPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+          AmazonEKSAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+          AmazonEKSClusterAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          AmazonEKSEditPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
+        }
+      }
     }
   }
 
