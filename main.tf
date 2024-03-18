@@ -81,7 +81,9 @@ module "iam_user" {
   policy_arns = [
     "arn:aws:iam::aws:policy/AdministratorAccess",
     "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-    "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
+    "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy",
+    "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+    "arn:aws:iam::aws:policy/AmazonEKSLocalOutpostClusterPolicy"
   ]
 }
 
