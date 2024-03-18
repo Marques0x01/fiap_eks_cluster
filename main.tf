@@ -25,11 +25,8 @@ module "kms" {
   description = "EC2 AutoScaling key usage"
   key_usage   = "ENCRYPT_DECRYPT"
 
-  # Policy
-  # key_administrators                 = ["arn:aws:iam::012345678901:role/admin"]
-
   # Aliases
-  aliases = ["alias/eks/fiap-lanches-eks"]
+  aliases = ["alias/eks/fiap-lanches-eks-1"]
 
   tags = {
     Terraform   = "true"
@@ -37,8 +34,8 @@ module "kms" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
-  name         = "fiap-lanches-eks"
+resource "aws_cloudwatch_log_group" "fiap-lanches-eks-1" {
+  name         = "fiap-lanches-eks-1"
   skip_destroy = false
 
   tags = {
@@ -53,7 +50,7 @@ module "iam_eks_role" {
   role_name = "fiap-lanches-role"
 
   cluster_service_accounts = {
-    "fiap-lanches-eks" = ["default:fiap-lanches-eks"]
+    "fiap-lanches-eks-1" = ["default:fiap-lanches-eks-1"]
   }
 
   depends_on = [module.eks]
@@ -83,18 +80,27 @@ module "iam_user" {
     "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
     "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy",
     "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
-    "arn:aws:iam::aws:policy/AmazonEKSLocalOutpostClusterPolicy"
+    "arn:aws:iam::aws:policy/AmazonEKSLocalOutpostClusterPolicy",
   ]
+}
+
+resource "aws_eks_access_entry" "fiap_lanches-eks" {
+  cluster_name      = "fiap_lanches-eks"
+  principal_arn     = "arn:aws:iam::211125342569:root"
+  type              = "STANDARD"
+  user_name = "arn:aws:iam::211125342569:root"
 }
 
 module "eks" {
   source     = "terraform-aws-modules/eks/aws"
   version    = "20.8.3"
-  depends_on = [module.iam_user]
+  depends_on = [module.iam_user, aws_eks_access_entry.fiap_lanches-eks]
 
   access_entries = {
-    fiap_lanches = {
-      principal_arn = "arn:aws:iam::211125342569:user/fiap-lanches"
+
+    root = {
+      principal_arn = "arn:aws:iam::211125342569:root"
+
       policy_associations = {
 
         view = {
