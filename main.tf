@@ -99,7 +99,7 @@ module "eks" {
       principal_arn = "arn:aws:iam::211125342569:user/fiap-lanches"
       policy_associations = {
 
-        fiap_lanches_view = {
+        view = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
           access_scope = {
             namespaces = ["default"]
@@ -107,7 +107,7 @@ module "eks" {
           }
         }
 
-        fiap_lanches_admin = {
+        admin = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
           access_scope = {
             namespaces = ["default"]
@@ -115,7 +115,7 @@ module "eks" {
           }
         }
 
-        fiap_lanches_edit = {
+        edit = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
           access_scope = {
             namespaces = ["default"]
@@ -123,7 +123,7 @@ module "eks" {
           }
         }
 
-        fiap_lanches_admin_cluster = {
+        admin_cluster = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
             namespaces = ["default"]
