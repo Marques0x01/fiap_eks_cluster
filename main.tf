@@ -115,7 +115,6 @@ module "iam_eks_role" {
     AmazonEKSAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
     AmazonEKSEditPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
     AmazonEKSClusterAdminPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-    AmazonEKSViewPolicy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
   }
 }
 
