@@ -99,7 +99,7 @@ module "iam" {
 }
 
 module "iam_eks_role" {
-  source      = "terraform-aws-modules/iam/aws/modules/iam-eks-role"
+  source      = "terraform-aws-modules/iam/aws//modules/iam-eks-role"
 
   role_name   = "fiap-lanches-role"
 
