@@ -93,9 +93,31 @@ resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
 }
 
 
+module "iam_eks_role" {
+  source      = "terraform-aws-modules/iam/aws//modules/iam-eks-role"
+
+  role_name   = "fiap-lanches-role"
+
+  cluster_service_accounts = {
+    "cluster1" = ["default:fiap-lanches-eks"]
+  }
+
+  tags = {
+    Name = "eks-fiap-lanches-role"
+  }
+
+  role_policy_arns = {
+    AmazonEKS_ADMIN_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+    AmazonEKS_EDIT_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
+    AmazonEKS_CLUSTER_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+    AmazonEKS_VIEW_Policy = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+  }
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.3"
+  depends_on = [ module.iam_eks_role ]
 
   cluster_name    = local.cluster_name
   cluster_version = "1.29"
