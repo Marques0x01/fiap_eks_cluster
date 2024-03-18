@@ -47,12 +47,6 @@ resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
   }
 }
 
-
-module "iam" {
-  source  = "terraform-aws-modules/iam/aws"
-  version = "5.37.1"
-}
-
 module "iam_eks_role" {
   source = "terraform-aws-modules/iam/aws//modules/iam-eks-role"
 
@@ -72,6 +66,8 @@ module "iam_eks_role" {
     AdministratorAccess                    = "arn:aws:iam::aws:policy/AdministratorAccess"
     AmazonEKSClusterPolicy                 = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
     AmazonEKSFargatePodExecutionRolePolicy = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
+    AmazonEKSServicePolicy = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+    AmazonEKSLocalOutpostClusterPolicy = "arn:aws:iam::aws:policy/AmazonEKSLocalOutpostClusterPolicy"
   }
 }
 
