@@ -52,10 +52,28 @@ locals {
 
 resource "aws_kms_key" "fiap-lanches-eks" {}
 
-resource "aws_kms_alias" "fiap-lanches-eks" {
-  name          = "alias/eks/fiap-lanches-eks"
-  target_key_id = aws_kms_key.fiap-lanches-eks.key_id
+module "kms" {
+  source = "terraform-aws-modules/kms/aws"
+
+  description = "EC2 AutoScaling key usage"
+  key_usage   = "ENCRYPT_DECRYPT"
+
+  # Policy
+  key_administrators                 = ["arn:aws:iam::012345678901:role/admin"]
+
+  # Aliases
+  aliases = ["alias/eks/fiap-lanches-eks"]
+
+  tags = {
+    Terraform   = "true"
+    Environment = "prod"
+  }
 }
+
+# resource "aws_kms_alias" "fiap-lanches-eks" {
+#   name          = "alias/eks/fiap-lanches-eks"
+#   target_key_id = aws_kms_key.fiap-lanches-eks.key_id
+# }
 
 resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
   name         = "fiap-lanches-eks"
@@ -67,12 +85,12 @@ resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
   }
 }
 
-resource "aws_kms_key" "fiap-lanches-eks" {}
+# resource "aws_kms_key" "fiap-lanches-eks" {}
 
-resource "aws_kms_alias" "fiap-lanches-eks" {
-  name          = "alias/eks/fiap-lanches-eks"
-  target_key_id = aws_kms_key.fiap-lanches-eks.key_id
-}
+# resource "aws_kms_alias" "fiap-lanches-eks" {
+#   name          = "alias/eks/fiap-lanches-eks"
+#   target_key_id = aws_kms_key.fiap-lanches-eks.key_id
+# }
 
 resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
   name = "fiap-lanches-eks"
