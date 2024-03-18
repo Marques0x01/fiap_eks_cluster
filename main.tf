@@ -62,7 +62,7 @@ module "iam_eks_role" {
     "fiap-lanches-eks" = ["default:fiap-lanches-eks"]
   }
 
-  depends_on = [module.iam_user]
+  depends_on = [module.eks]
 
   tags = {
     Name = "eks-fiap-lanches-role"
@@ -92,7 +92,7 @@ module "iam_user" {
 module "eks" {
   source     = "terraform-aws-modules/eks/aws"
   version    = "20.8.3"
-  depends_on = [module.iam_eks_role]
+  depends_on = [module.iam_user]
 
   access_entries = {
     fiap_lanches = {
