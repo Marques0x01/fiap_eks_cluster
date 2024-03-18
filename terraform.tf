@@ -1,12 +1,12 @@
 terraform {
-#   backend "remote" {
-#     # hostname = "app.terraform.io"
-#     organization = "fiap-lanches-eks"
+  backend "remote" {
+    # hostname = "app.terraform.io"
+    organization = "fiap-lanches-eks"
 
-#     workspaces {
-#       name = "fiap-lanches-workflow"
-#     }
-#   }
+    workspaces {
+      name = "fiap-lanches-workflow"
+    }
+  }
 
   required_providers {
     tfe = {

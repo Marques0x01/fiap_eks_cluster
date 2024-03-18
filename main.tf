@@ -26,7 +26,7 @@ module "kms" {
   key_usage   = "ENCRYPT_DECRYPT"
 
   # Aliases
-  aliases = ["alias/eks/fiap-lanches-eks-1"]
+  aliases = ["alias/eks/fiap-lanches-eks"]
 
   tags = {
     Terraform   = "true"
@@ -34,8 +34,8 @@ module "kms" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "fiap-lanches-eks-1" {
-  name         = "fiap-lanches-eks-1"
+resource "aws_cloudwatch_log_group" "fiap-lanches-eks" {
+  name         = "fiap-lanches-eks"
   skip_destroy = false
 
   tags = {
@@ -50,7 +50,7 @@ module "iam_eks_role" {
   role_name = "fiap-lanches-role"
 
   cluster_service_accounts = {
-    "fiap-lanches-eks-1" = ["default:fiap-lanches-eks-1"]
+    "fiap-lanches-eks" = ["default:fiap-lanches-eks"]
   }
 
   depends_on = [module.eks]
@@ -84,17 +84,19 @@ module "iam_user" {
   ]
 }
 
-resource "aws_eks_access_entry" "fiap_lanches-eks" {
-  cluster_name      = "fiap_lanches-eks"
-  principal_arn     = "arn:aws:iam::211125342569:root"
-  type              = "STANDARD"
-  user_name = "arn:aws:iam::211125342569:root"
-}
+# resource "aws_eks_access_entry" "fiap_lanches-eks" {
+#   cluster_name      = "fiap_lanches-eks"
+#   principal_arn     = "arn:aws:iam::211125342569:root"
+#   type              = "STANDARD"
+#   user_name = "arn:aws:iam::211125342569:root"
+# }
 
 module "eks" {
   source     = "terraform-aws-modules/eks/aws"
   version    = "20.8.3"
-  depends_on = [module.iam_user, aws_eks_access_entry.fiap_lanches-eks]
+  depends_on = [module.iam_user,
+   aws_eks_access_entry.fiap_lanches-eks
+   ]
 
   access_entries = {
 
