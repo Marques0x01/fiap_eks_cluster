@@ -99,7 +99,7 @@ module "iam_eks_role" {
   role_name   = "fiap-lanches-role"
 
   cluster_service_accounts = {
-    "cluster1" = ["default:fiap-lanches-eks"]
+    "fiap-lanches-eks" = ["default:fiap-lanches-eks"]
   }
 
   tags = {
