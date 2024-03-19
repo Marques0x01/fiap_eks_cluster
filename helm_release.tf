@@ -4,7 +4,7 @@
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-  token                  = data.aws_eks_cluster_auth.cluster_auth.token
+  token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
 provider "helm" {
@@ -46,13 +46,13 @@ resource "helm_release" "fiap-lanches" {
   }
 }
 
-resource "helm_release" "metric-server" {
-  name       = "metric-server"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "metrics-server"
-  namespace  = "kube-system"
-  set {
-    name  = "apiService.create"
-    value = "true"
-  }
-}
+# resource "helm_release" "metric-server" {
+#   name       = "metric-server"
+#   repository = "https://charts.bitnami.com/bitnami"
+#   chart      = "metrics-server"
+#   namespace  = "kube-system"
+#   set {
+#     name  = "apiService.create"
+#     value = "true"
+#   }
+# }
