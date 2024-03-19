@@ -18,19 +18,13 @@ locals {
 
 
 
-module "kms" {
-  source = "terraform-aws-modules/kms/aws"
-
-
-  description = "EC2 AutoScaling key usage"
-  key_usage   = "ENCRYPT_DECRYPT"
-
-  # Aliases
-  aliases = ["alias/eks/fiap-eks-kms"]
+resource "aws_kms_key" "fiap_lanches_eks" {
+  description             = "Chave KMS para uso com o cluster EKS fiap-lanches"
+  deletion_window_in_days = 7
 
   tags = {
-    Terraform   = "true"
-    Environment = "prod"
+    Name        = "fiap-eks-kms"
+    Environment = "Production"
   }
 }
 
@@ -94,7 +88,7 @@ module "iam_user" {
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.3"
-  depends_on = [module.iam_user,module.kms]
+  depends_on = [module.iam_user,aws_kms_key.fiap_lanches_eks]
 
   create_cloudwatch_log_group = false
 
@@ -155,7 +149,7 @@ module "eks" {
 
   create_kms_key = false
   cluster_encryption_config = {
-    provider_key_arn = module.kms.arn
+    provider_key_arn = ws_kms_key.fiap_lanches_eks.arn
     resources        = ["secrets"]
   }
 
