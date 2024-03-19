@@ -94,7 +94,7 @@ module "iam_user" {
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.3"
-  depends_on = [module.iam_user,aws_kms_key.fiap_lanches_eks]
+  depends_on = [module.iam_user,module.kms]
 
   create_cloudwatch_log_group = false
 
@@ -155,7 +155,7 @@ module "eks" {
 
   create_kms_key = false
   cluster_encryption_config = {
-    provider_key_arn = aws_kms_key.fiap_lanches_eks.arn
+    provider_key_arn = module.kms.arn
     resources        = ["secrets"]
   }
 
