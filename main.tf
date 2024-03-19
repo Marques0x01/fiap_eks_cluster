@@ -149,7 +149,7 @@ module "eks" {
 
   create_kms_key = false
   cluster_encryption_config = {
-    provider_key_arn = ws_kms_key.fiap_lanches_eks.arn
+    provider_key_arn = aws_kms_key.fiap_lanches_eks.arn
     resources        = ["secrets"]
   }
 
